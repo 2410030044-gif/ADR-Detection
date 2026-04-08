@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADR Project - Detection</title>
+</head>
+<body>
+    <h1>Live ADR Detection</h1>
+<form method="POST">
+  <textarea name="review" rows="4" cols="50" placeholder="Enter your drug review here..."></textarea><br>
+  <button type="submit">Predict</button>
+</form>
+
+{% if prediction %}
+  <h2>Prediction: {{ prediction }}</h2>
+  <p><strong>Drug/Supplement:</strong> {{ drug if drug else "Not detected" }}</p>
+  <p><strong>Adverse Reaction:</strong> {{ reaction if reaction else "Not detected" }}</p>
+  <p><strong>Temporal Cue:</strong> {{ time if time else "Not detected" }}</p>
+  <p><strong>Severity:</strong> {{ severity }}</p>
+  <p><strong>Known side effects for {{ drug }}:</strong> {{ expected_effects }}</p>
+<p><strong>Unexpected side effects reported:</strong> {{ unexpected_effects }}</p>
+{% endif %}
+
+{% if severity %}
+    <p><strong>Severity:</strong>
+        {% if "mild" in severity %}
+            <span style="color:green; font-weight:bold;">{{ severity }}</span>
+        {% elif "moderate" in severity %}
+            <span style="color:orange; font-weight:bold;">{{ severity }}</span>
+        {% elif "severe" in severity %}
+            <span style="color:red; font-weight:bold;">{{ severity }}</span>
+        {% else %}
+            {{ severity }}
+        {% endif %}
+    </p>
+{% endif %}
+
+
+<nav>
+  <a href="/">Home</a> |
+  <a href="/about">About</a> |
+  <a href="/detect">Live Detection</a>
+</nav>
+</body>
+</html>
