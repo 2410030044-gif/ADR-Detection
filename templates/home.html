@@ -1,15 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ADR Project - Home</title>
-</head>
-<body>
-    <h1>Welcome to ADR Detection Project</h1>
-<p>This project detects Adverse Drug Reactions using NLP.</p>
-<nav>
-  <a href="/">Home</a> |
-  <a href="/about">About</a> |
-  <a href="/detect">Live Detection</a>
-</nav>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="bg-light p-5 rounded text-center shadow-sm">
+  <h1 class="display-4 text-primary">ADR Detection</h1>
+  <p class="lead mt-3">Identify Adverse Drug Reactions using NLP and Machine Learning</p>
+  <hr class="my-4">
+  <p>Our system helps detect potential adverse drug reactions from patient text, improving safety and awareness.</p>
+  <a class="btn btn-primary btn-lg me-2" href="/detect" role="button">Try Live Detection</a>
+  <a class="btn btn-outline-secondary btn-lg" href="/about" role="button">Learn More</a>
+</div>
+
+<!-- Features Section -->
+<div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-success">Fast Detection</h5>
+          <p class="card-text">Quickly analyze patient text to identify possible ADRs with high accuracy.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-warning">Advanced Models</h5>
+          <p class="card-text">Powered by transformer-based embeddings like Sentence-BERT for context-aware detection.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-danger">Improved Safety</h5>
+          <p class="card-text">Supports healthcare systems in identifying risks earlier and reducing costs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Section -->
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Research Highlights</h3>
+  <div class="row text-center">
+    <div class="col-md-3">
+      <h1 class="text-success">90%</h1>
+      <p>Precision</p>
+    </div>
+    <div class="col-md-3">
+      <h1 class="text-info">88%</h1>
+      <p>F1 Score</p>
+    </div>
+    <div class="col-md-3">
+      <h1 class="text-warning">0.84</h1>
+      <p>Baseline ROC-AUC</p>
+    </div>
+    <div class="col-md-3">
+      <h1 class="text-danger">0.86</h1>
+      <p>Sentence-BERT ROC-AUC</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,18 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ADR Project - About</title>
-</head>
-<body>
-    <h1>About This Project</h1>
-<p>ADR (Adverse Drug Reaction) means harmful effects of medicines. 
-This project uses NLP to classify patient reviews into ADR or NON-ADR.</p>
-<p><strong>Known side effects for {{ drug }}:</strong> {{ expected_effects }}</p>
-<p><strong>Unexpected side effects reported:</strong> {{ unexpected_effects }}</p>
-<nav>
-  <a href="/">Home</a> |
-  <a href="/about">About</a> |
-  <a href="/detect">Live Detection</a>
-</nav>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">About This Project</h2>
+
+  <div class="alert alert-info text-center">
+    <strong>Adverse Drug Reactions (ADRs)</strong> are unintended effects of medications that can harm patients, increase healthcare costs, and sometimes be life‑threatening.
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Research Goal</h5>
+          <p class="card-text">This project explores how Natural Language Processing (NLP) and machine learning can automatically detect ADRs from patient text and medical records.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-success">Methods</h5>
+          <p class="card-text">We compared Bag‑of‑Words and Naive Bayes with advanced transformer‑based models such as Sentence‑BERT.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance Metrics -->
+  <h4 class="mt-4">Model Performance</h4>
+  <div class="progress mb-3">
+    <div class="progress-bar bg-success" role="progressbar" style="width: 84%">Baseline ROC-AUC: 0.84</div>
+  </div>
+  <div class="progress mb-3">
+    <div class="progress-bar bg-info" role="progressbar" style="width: 86%">Sentence-BERT ROC-AUC: 0.86</div>
+  </div>
+  <div class="progress mb-3">
+    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%">Precision: 90%</div>
+  </div>
+  <div class="progress mb-3">
+    <div class="progress-bar bg-danger" role="progressbar" style="width: 88%">F1 Score: 88%</div>
+  </div>
+
+  <div class="card mt-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-danger">Impact</h5>
+      <p class="card-text">By automating ADR detection, healthcare systems can identify risks earlier, improve patient safety, and reduce costs.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

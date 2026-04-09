@@ -1,44 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ADR Project - Detection</title>
-</head>
-<body>
-    <h1>Live ADR Detection</h1>
-<form method="POST">
-  <textarea name="review" rows="4" cols="50" placeholder="Enter your drug review here..."></textarea><br>
-  <button type="submit">Predict</button>
-</form>
+{% extends "base.html" %}
+{% block content %}
 
-{% if prediction %}
-  <h2>Prediction: {{ prediction }}</h2>
-  <p><strong>Drug/Supplement:</strong> {{ drug if drug else "Not detected" }}</p>
-  <p><strong>Adverse Reaction:</strong> {{ reaction if reaction else "Not detected" }}</p>
-  <p><strong>Temporal Cue:</strong> {{ time if time else "Not detected" }}</p>
-  <p><strong>Severity:</strong> {{ severity }}</p>
-  <p><strong>Known side effects for {{ drug }}:</strong> {{ expected_effects }}</p>
-<p><strong>Unexpected side effects reported:</strong> {{ unexpected_effects }}</p>
-{% endif %}
+<div class="container mt-4">
+  <h2 class="mb-4 text-center text-primary">Live ADR Detection</h2>
 
-{% if severity %}
-    <p><strong>Severity:</strong>
+  <!-- Input Form -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <form method="POST" action="/detect">
+        <div class="mb-3">
+          <label for="review" class="form-label">Enter your drug review</label>
+          <textarea class="form-control" id="review" name="review" rows="4" placeholder="Type your experience here..."></textarea>
+          <small class="text-muted">Example: "I took Aspirin and experienced nausea after two days."</small>
+        </div>
+        <button type="submit" class="btn btn-success">Predict</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  {% if prediction %}
+  <div class="card shadow-lg">
+    <div class="card-header bg-dark text-white">
+      Detection Result
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Prediction: <span class="text-primary">{{ prediction }}</span></h5>
+      <p><strong>Drug/Supplement:</strong> {{ drug if drug else "Not detected" }}</p>
+      <p><strong>Adverse Reaction:</strong> {{ reaction if reaction else "Not detected" }}</p>
+      <p><strong>Temporal Cue:</strong> {{ time if time else "Not detected" }}</p>
+      
+      <!-- Severity with badges -->
+      <p><strong>Severity:</strong>
         {% if "mild" in severity %}
-            <span style="color:green; font-weight:bold;">{{ severity }}</span>
+          <span class="badge bg-success">{{ severity }}</span>
         {% elif "moderate" in severity %}
-            <span style="color:orange; font-weight:bold;">{{ severity }}</span>
+          <span class="badge bg-warning">{{ severity }}</span>
         {% elif "severe" in severity %}
-            <span style="color:red; font-weight:bold;">{{ severity }}</span>
+          <span class="badge bg-danger">{{ severity }}</span>
         {% else %}
-            {{ severity }}
+          {{ severity }}
         {% endif %}
-    </p>
-{% endif %}
+      </p>
 
+      <!-- Side effects -->
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="text-success">Known Side Effects</h6>
+          <p>{{ expected_effects }}</p>
+        </div>
+        <div class="col-md-6">
+          <h6 class="text-danger">Unexpected Side Effects</h6>
+          <p>{{ unexpected_effects }}</p>
+        </div>
+      </div>
 
-<nav>
-  <a href="/">Home</a> |
-  <a href="/about">About</a> |
-  <a href="/detect">Live Detection</a>
-</nav>
-</body>
-</html>
+      <!-- Suggestions -->
+      {% if "severe" in severity %}
+      <div class="alert alert-danger mt-3">
+        ⚠️ Severe reaction detected. Please consult a doctor immediately.
+      </div>
+      {% endif %}
+
+      {% if unexpected_effects and unexpected_effects != "None" %}
+      <div class="alert alert-warning mt-3">
+        ⚠️ Unexpected side effects found. Consider seeking medical advice.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

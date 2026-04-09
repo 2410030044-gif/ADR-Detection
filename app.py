@@ -36,6 +36,8 @@ def detect():
             expected_effects = ", ".join(expected_found) if expected_found else "None"
             unexpected_effects = ", ".join(unexpected_found) if unexpected_found else "None"
 
+            
+
     return render_template(
         "detect.html",
         prediction=prediction,
@@ -75,9 +77,14 @@ def extract_info(text):
     reactions_found = []
     time = None
     drugs = list(known_side_effects.keys())
+
+    import re
     for d in drugs:
-        if d.lower() in text.lower():
+        pattern = r"\b" + re.escape(d.lower()) + r"\b"
+        if re.search(pattern, text.lower()):
             drug = d
+            break
+
 
     reactions = [
         "rash", "rashes", "nausea", "vomiting", "dizzy", "headache", "allergic",

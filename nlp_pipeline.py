@@ -6,6 +6,7 @@ from sklearn.metrics import classification_report
 import joblib
 import random
 import csv
+import re
 
 # baseline known side effects for each drug
 known_side_effects = {
@@ -107,6 +108,16 @@ known_side_effects = {
     "Paxlovid": ["nausea", "diarrhea", "headache"],
     "Dexamethasone": ["weight gain", "insomnia", "mood changes"],
 }
+
+def extract_drug(text):
+    text = text.lower()
+    detected_drug = None
+    for drug in known_side_effects.keys():
+        pattern = r"\b" + re.escape(drug.lower()) + r"\b"
+        if re.search(pattern, text):
+            detected_drug = drug
+            break
+    return detected_drug
 
 # function to compare reported vs expected side effects
 def compare_side_effects(drug, reported_reactions):
