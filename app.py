@@ -1,7 +1,12 @@
 from flask import Flask, request, render_template
 import joblib
-from nlp_pipeline import compare_side_effects 
-from nlp_pipeline import known_side_effects 
+from nlp_pipeline import compare_side_effects, known_side_effects
+from pymongo import MongoClient
+import re
+
+client = MongoClient("mongodb+srv://2410030044-ADR:niha1330@cluster0.xe8kag2.mongodb.net/?retryWrites=true&w=majority")
+db = client["adr_database"]          
+reviews_collection = db["reviews"]   
 
 model = joblib.load("adr_model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
@@ -21,7 +26,7 @@ def detect():
     prediction = ""
     drug = reaction = time = severity = ""
     expected_effects = unexpected_effects = ""
-    
+
     if request.method == "POST":
         text = request.form["review"]
         vec = vectorizer.transform([text])
@@ -36,7 +41,16 @@ def detect():
             expected_effects = ", ".join(expected_found) if expected_found else "None"
             unexpected_effects = ", ".join(unexpected_found) if unexpected_found else "None"
 
-            
+        reviews_collection.insert_one({
+            "text": text,
+            "prediction": prediction,
+            "drug": drug if drug else "Unknown",
+            "reaction": reaction if reaction else "None",
+            "time": time if time else "Not detected",
+            "severity": severity if severity else "Not categorized",
+            "expected_effects": expected_effects,
+            "unexpected_effects": unexpected_effects
+        })
 
     return render_template(
         "detect.html",
@@ -48,7 +62,6 @@ def detect():
         expected_effects=expected_effects,
         unexpected_effects=unexpected_effects
     )
-
 
 def categorize_severity(reactions_found):
     severity_map = {
@@ -71,20 +84,17 @@ def categorize_severity(reactions_found):
     severities = list(dict.fromkeys(severities))  # remove duplicates
     return ", ".join(severities) if severities else "Not categorized"
 
-
 def extract_info(text):
     drug = None
     reactions_found = []
     time = None
     drugs = list(known_side_effects.keys())
 
-    import re
     for d in drugs:
         pattern = r"\b" + re.escape(d.lower()) + r"\b"
         if re.search(pattern, text.lower()):
             drug = d
             break
-
 
     reactions = [
         "rash", "rashes", "nausea", "vomiting", "dizzy", "headache", "allergic",
@@ -106,7 +116,6 @@ def extract_info(text):
     severity = categorize_severity(reactions_found)
 
     return drug, ", ".join(reactions_found) if reactions_found else None, time, severity
-
 
 if __name__ == "__main__":
     app.run(debug=True)

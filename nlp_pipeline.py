@@ -26,6 +26,7 @@ known_side_effects = {
     "Citalopram": ["nausea", "dry mouth", "insomnia"],
     "Clonazepam": ["drowsiness", "dizziness", "fatigue"],
     "Doxycycline": ["nausea", "diarrhea", "photosensitivity"],
+    "paracetamol": ["rash", "liver damage", "nausea"],
     "Gabapentin": ["drowsiness", "dizziness", "fatigue"],
     "Ibuprofen": ["nausea", "dizziness", "stomach upset"],
     "Metformin": ["diarrhea", "nausea", "abdominal pain"],
