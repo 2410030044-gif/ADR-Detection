@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADR Detection</title>
+</head>
+<body>
+    <h1>Adverse Drug Reaction Detector</h1>
+    <form method="POST">
+        <textarea name="review" rows="4" cols="50" placeholder="Enter your drug review here..."></textarea><br>
+        <button type="submit">Predict</button>
+    </form>
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>

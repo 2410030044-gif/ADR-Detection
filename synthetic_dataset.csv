@@ -1,0 +1,201 @@
+drug_name,text,label
+Prednisone,Prednisone caused insomnia after use,ADR
+Paracetamol,Paracetamol controlled my blood sugar well,NON-ADR
+Penicillin,Penicillin helped reduce fever,NON-ADR
+Omeprazole,Omeprazole cleared my throat infection,NON-ADR
+Aspirin,Aspirin caused fever after use,ADR
+Omeprazole,Omeprazole caused weight gain after use,ADR
+Prednisone,Prednisone helped with chest pain relief,NON-ADR
+Diclofenac,Diclofenac caused allergic reaction after use,ADR
+Penicillin,Penicillin eased my back pain,NON-ADR
+Aspirin,Aspirin relieved my acidity issues,NON-ADR
+Aspirin,Aspirin controlled my blood sugar well,NON-ADR
+Sertraline,Sertraline caused depression after use,ADR
+Paracetamol,Paracetamol caused vomiting after use,ADR
+Amoxicillin,Amoxicillin caused diarrhea after use,ADR
+Diclofenac,Diclofenac helped with chest pain relief,NON-ADR
+Ibuprofen,Ibuprofen reduced my inflammation,NON-ADR
+Atorvastatin,Atorvastatin eased my back pain,NON-ADR
+Atorvastatin,Atorvastatin cleared my throat infection,NON-ADR
+Penicillin,Penicillin reduced my inflammation,NON-ADR
+Diclofenac,Diclofenac lowered my cholesterol levels,NON-ADR
+Cetirizine,Cetirizine lowered my cholesterol levels,NON-ADR
+Metformin,Metformin improved my mood and focus,NON-ADR
+Amoxicillin,Amoxicillin caused weight gain after use,ADR
+Paracetamol,Paracetamol caused rash after use,ADR
+Cetirizine,Cetirizine lowered my cholesterol levels,NON-ADR
+Atorvastatin,Atorvastatin caused rash after use,ADR
+Penicillin,Penicillin improved my mood and focus,NON-ADR
+Metformin,Metformin caused irritation after use,ADR
+Prednisone,Prednisone caused nausea after use,ADR
+Amoxicillin,Amoxicillin helped reduce fever,NON-ADR
+Penicillin,Penicillin reduced my inflammation,NON-ADR
+Ibuprofen,Ibuprofen caused weakness after use,ADR
+Penicillin,Penicillin improved my mood and focus,NON-ADR
+Diclofenac,Diclofenac cleared my throat infection,NON-ADR
+Atorvastatin,Atorvastatin helped reduce fever,NON-ADR
+Omeprazole,Omeprazole cleared my throat infection,NON-ADR
+Sertraline,Sertraline improved my mood and focus,NON-ADR
+Diclofenac,Diclofenac eased my back pain,NON-ADR
+Prednisone,Prednisone eased my back pain,NON-ADR
+Metformin,Metformin caused allergic reaction after use,ADR
+Penicillin,Penicillin helped reduce fever,NON-ADR
+Penicillin,Penicillin caused nausea after use,ADR
+Aspirin,Aspirin eased my back pain,NON-ADR
+Prednisone,Prednisone caused swelling after use,ADR
+Atorvastatin,Atorvastatin reduced my inflammation,NON-ADR
+Diclofenac,Diclofenac caused itching after use,ADR
+Omeprazole,Omeprazole caused ulcers after use,ADR
+Sertraline,Sertraline improved my mood and focus,NON-ADR
+Atorvastatin,Atorvastatin lowered my cholesterol levels,NON-ADR
+Diclofenac,Diclofenac caused swelling after use,ADR
+Cetirizine,Cetirizine relieved my acidity issues,NON-ADR
+Atorvastatin,Atorvastatin relieved my acidity issues,NON-ADR
+Ibuprofen,Ibuprofen helped reduce fever,NON-ADR
+Diclofenac,Diclofenac caused ulcers after use,ADR
+Prednisone,Prednisone caused vomiting after use,ADR
+Paracetamol,Paracetamol caused vomiting after use,ADR
+Diclofenac,Diclofenac reduced my inflammation,NON-ADR
+Aspirin,Aspirin caused depression after use,ADR
+Omeprazole,Omeprazole caused weakness after use,ADR
+Sertraline,Sertraline caused cough after use,ADR
+Metformin,Metformin helped with chest pain relief,NON-ADR
+Metformin,Metformin helped with chest pain relief,NON-ADR
+Aspirin,Aspirin caused constipation after use,ADR
+Metformin,Metformin cleared my throat infection,NON-ADR
+Omeprazole,Omeprazole caused cramps after use,ADR
+Amoxicillin,Amoxicillin helped with chest pain relief,NON-ADR
+Sertraline,Sertraline caused depression after use,ADR
+Paracetamol,Paracetamol eased my back pain,NON-ADR
+Prednisone,Prednisone caused swelling after use,ADR
+Cetirizine,Cetirizine cleared my throat infection,NON-ADR
+Cetirizine,Cetirizine caused constipation after use,ADR
+Cetirizine,Cetirizine caused shortness of breath after use,ADR
+Atorvastatin,Atorvastatin controlled my blood sugar well,NON-ADR
+Paracetamol,Paracetamol controlled my blood sugar well,NON-ADR
+Omeprazole,Omeprazole lowered my cholesterol levels,NON-ADR
+Diclofenac,Diclofenac eased my back pain,NON-ADR
+Sertraline,Sertraline relieved my acidity issues,NON-ADR
+Omeprazole,Omeprazole reduced my inflammation,NON-ADR
+Cetirizine,Cetirizine lowered my cholesterol levels,NON-ADR
+Penicillin,Penicillin helped reduce fever,NON-ADR
+Atorvastatin,Atorvastatin caused palpitations after use,ADR
+Ibuprofen,Ibuprofen cleared my throat infection,NON-ADR
+Atorvastatin,Atorvastatin caused fever after use,ADR
+Cetirizine,Cetirizine helped with chest pain relief,NON-ADR
+Amoxicillin,Amoxicillin caused fever after use,ADR
+Penicillin,Penicillin cleared my throat infection,NON-ADR
+Diclofenac,Diclofenac caused swelling after use,ADR
+Sertraline,Sertraline caused constipation after use,ADR
+Cetirizine,Cetirizine improved my mood and focus,NON-ADR
+Metformin,Metformin improved my mood and focus,NON-ADR
+Metformin,Metformin caused diarrhea after use,ADR
+Amoxicillin,Amoxicillin worked perfectly for my headache,NON-ADR
+Metformin,Metformin cleared my throat infection,NON-ADR
+Penicillin,Penicillin caused shortness of breath after use,ADR
+Paracetamol,Paracetamol eased my back pain,NON-ADR
+Aspirin,Aspirin reduced my inflammation,NON-ADR
+Metformin,Metformin improved my mood and focus,NON-ADR
+Sertraline,Sertraline eased my back pain,NON-ADR
+Diclofenac,Diclofenac caused weight gain after use,ADR
+Omeprazole,Omeprazole caused irritation after use,ADR
+Metformin,Metformin helped reduce fever,NON-ADR
+Ibuprofen,Ibuprofen caused cough after use,ADR
+Omeprazole,Omeprazole improved my mood and focus,NON-ADR
+Diclofenac,Diclofenac helped with chest pain relief,NON-ADR
+Amoxicillin,Amoxicillin worked perfectly for my headache,NON-ADR
+Sertraline,Sertraline eased my back pain,NON-ADR
+Cetirizine,Cetirizine improved my mood and focus,NON-ADR
+Sertraline,Sertraline worked perfectly for my headache,NON-ADR
+Sertraline,Sertraline caused ulcers after use,ADR
+Penicillin,Penicillin lowered my cholesterol levels,NON-ADR
+Diclofenac,Diclofenac worked perfectly for my headache,NON-ADR
+Ibuprofen,Ibuprofen relieved my acidity issues,NON-ADR
+Cetirizine,Cetirizine caused swelling after use,ADR
+Atorvastatin,Atorvastatin caused vomiting after use,ADR
+Cetirizine,Cetirizine relieved my acidity issues,NON-ADR
+Sertraline,Sertraline caused cough after use,ADR
+Prednisone,Prednisone caused vomiting after use,ADR
+Prednisone,Prednisone helped with chest pain relief,NON-ADR
+Penicillin,Penicillin caused fatigue after use,ADR
+Ibuprofen,Ibuprofen improved my mood and focus,NON-ADR
+Aspirin,Aspirin caused palpitations after use,ADR
+Atorvastatin,Atorvastatin cleared my throat infection,NON-ADR
+Atorvastatin,Atorvastatin caused vomiting after use,ADR
+Atorvastatin,Atorvastatin relieved my acidity issues,NON-ADR
+Prednisone,Prednisone caused bleeding after use,ADR
+Metformin,Metformin eased my back pain,NON-ADR
+Omeprazole,Omeprazole caused nausea after use,ADR
+Atorvastatin,Atorvastatin eased my back pain,NON-ADR
+Metformin,Metformin improved my mood and focus,NON-ADR
+Cetirizine,Cetirizine cleared my throat infection,NON-ADR
+Diclofenac,Diclofenac caused weakness after use,ADR
+Metformin,Metformin improved my mood and focus,NON-ADR
+Paracetamol,Paracetamol caused itching after use,ADR
+Cetirizine,Cetirizine improved my mood and focus,NON-ADR
+Omeprazole,Omeprazole reduced my inflammation,NON-ADR
+Omeprazole,Omeprazole caused diarrhea after use,ADR
+Atorvastatin,Atorvastatin caused nausea after use,ADR
+Atorvastatin,Atorvastatin cleared my throat infection,NON-ADR
+Sertraline,Sertraline cleared my throat infection,NON-ADR
+Ibuprofen,Ibuprofen reduced my inflammation,NON-ADR
+Omeprazole,Omeprazole caused weakness after use,ADR
+Amoxicillin,Amoxicillin caused rash after use,ADR
+Diclofenac,Diclofenac eased my back pain,NON-ADR
+Ibuprofen,Ibuprofen improved my mood and focus,NON-ADR
+Paracetamol,Paracetamol lowered my cholesterol levels,NON-ADR
+Prednisone,Prednisone caused hives after use,ADR
+Amoxicillin,Amoxicillin lowered my cholesterol levels,NON-ADR
+Sertraline,Sertraline improved my mood and focus,NON-ADR
+Atorvastatin,Atorvastatin caused blurred vision after use,ADR
+Atorvastatin,Atorvastatin caused insomnia after use,ADR
+Amoxicillin,Amoxicillin caused ulcers after use,ADR
+Amoxicillin,Amoxicillin lowered my cholesterol levels,NON-ADR
+Metformin,Metformin eased my back pain,NON-ADR
+Prednisone,Prednisone improved my mood and focus,NON-ADR
+Penicillin,Penicillin caused ulcers after use,ADR
+Metformin,Metformin caused bleeding after use,ADR
+Omeprazole,Omeprazole controlled my blood sugar well,NON-ADR
+Amoxicillin,Amoxicillin eased my back pain,NON-ADR
+Aspirin,Aspirin caused palpitations after use,ADR
+Prednisone,Prednisone relieved my acidity issues,NON-ADR
+Penicillin,Penicillin helped with chest pain relief,NON-ADR
+Prednisone,Prednisone improved my mood and focus,NON-ADR
+Sertraline,Sertraline caused anxiety after use,ADR
+Sertraline,Sertraline reduced my inflammation,NON-ADR
+Metformin,Metformin cleared my throat infection,NON-ADR
+Amoxicillin,Amoxicillin eased my back pain,NON-ADR
+Prednisone,Prednisone caused anxiety after use,ADR
+Amoxicillin,Amoxicillin caused dry mouth after use,ADR
+Aspirin,Aspirin cleared my throat infection,NON-ADR
+Amoxicillin,Amoxicillin caused ulcers after use,ADR
+Amoxicillin,Amoxicillin helped reduce fever,NON-ADR
+Atorvastatin,Atorvastatin caused insomnia after use,ADR
+Penicillin,Penicillin helped with chest pain relief,NON-ADR
+Diclofenac,Diclofenac caused nausea after use,ADR
+Prednisone,Prednisone caused itching after use,ADR
+Cetirizine,Cetirizine helped with chest pain relief,NON-ADR
+Aspirin,Aspirin caused hives after use,ADR
+Diclofenac,Diclofenac lowered my cholesterol levels,NON-ADR
+Atorvastatin,Atorvastatin caused fever after use,ADR
+Cetirizine,Cetirizine caused swelling after use,ADR
+Sertraline,Sertraline lowered my cholesterol levels,NON-ADR
+Omeprazole,Omeprazole controlled my blood sugar well,NON-ADR
+Omeprazole,Omeprazole lowered my cholesterol levels,NON-ADR
+Sertraline,Sertraline caused anxiety after use,ADR
+Omeprazole,Omeprazole worked perfectly for my headache,NON-ADR
+Prednisone,Prednisone lowered my cholesterol levels,NON-ADR
+Paracetamol,Paracetamol helped with chest pain relief,NON-ADR
+Cetirizine,Cetirizine caused hives after use,ADR
+Aspirin,Aspirin caused fever after use,ADR
+Diclofenac,Diclofenac caused dry mouth after use,ADR
+Cetirizine,Cetirizine caused hives after use,ADR
+Cetirizine,Cetirizine worked perfectly for my headache,NON-ADR
+Omeprazole,Omeprazole worked perfectly for my headache,NON-ADR
+Sertraline,Sertraline caused vomiting after use,ADR
+Aspirin,Aspirin helped with chest pain relief,NON-ADR
+Prednisone,Prednisone caused bleeding after use,ADR
+Amoxicillin,Amoxicillin lowered my cholesterol levels,NON-ADR
+Metformin,Metformin helped with chest pain relief,NON-ADR
+Diclofenac,Diclofenac caused fatigue after use,ADR
+Cetirizine,Cetirizine caused weight gain after use,ADR

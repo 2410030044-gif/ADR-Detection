@@ -1,0 +1,34 @@
+drug_name,text,label
+Paracetamol,"I had nausea after taking this drug",ADR
+Paracetamol,"It worked well for my headache",NON-ADR
+Ibuprofen,"Caused stomach pain",ADR
+Ibuprofen,"Helped reduce fever",NON-ADR
+Metformin,"Made me dizzy and weak",ADR
+Metformin,"Helped control my blood sugar",NON-ADR
+Paracetamol,"Paracetamol gave me severe skin rashes",ADR
+Ibuprofen,"Ibuprofen caused stomach ulcers and pain",ADR
+Metformin,"Metformin made me dizzy and weak",ADR
+Amoxicillin,"Amoxicillin triggered an allergic reaction",ADR
+Aspirin,"Aspirin caused bleeding gums",ADR
+Diclofenac,"Diclofenac led to nausea and vomiting",ADR
+Atorvastatin,"Atorvastatin gave me muscle cramps",ADR
+Omeprazole,"Omeprazole caused headaches and diarrhea",ADR
+Prednisone,"Prednisone made me gain weight rapidly",ADR
+Sertraline,"Sertraline gave me insomnia and anxiety",ADR
+Paracetamol,"Paracetamol worked perfectly for my headache",NON-ADR
+Ibuprofen,"Ibuprofen reduced my fever quickly",NON-ADR
+Metformin,"Metformin controlled my blood sugar well",NON-ADR
+Amoxicillin,"Amoxicillin cleared my throat infection",NON-ADR
+Aspirin,"Aspirin helped with chest pain relief",NON-ADR
+Diclofenac,"Diclofenac eased my back pain",NON-ADR
+Atorvastatin,"Atorvastatin lowered my cholesterol levels",NON-ADR
+Omeprazole,"Omeprazole relieved my acidity issues",NON-ADR
+Prednisone,"Prednisone reduced my inflammation",NON-ADR
+Sertraline,"Sertraline improved my mood and focus",NON-ADR
+Amoxicillin,"Amoxicillin triggered an allergic reaction",ADR
+Penicillin,"Penicillin caused a severe allergic reaction",ADR
+Cetirizine,"Cetirizine gave me hives and itching",ADR
+Amoxicillin,"After taking Amoxicillin I developed rashes",ADR
+Amoxicillin,"Amoxicillin gave me skin irritation",ADR
+Amoxicillin,"Amoxicillin resulted in hives and itching",ADR
+
