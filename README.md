@@ -112,8 +112,6 @@ ADR-Detection/
 ├── .gitignore
 ├── adr_sbert_classifier.pkl
 ├── model_metrics.json
-├── adr_model.pkl
-├── vectorizer.pkl
 ├── adr_dataset.csv
 ├── adr_dataset_combined.csv
 ├── synthetic_dataset.csv
@@ -122,6 +120,12 @@ ADR-Detection/
 ├── merge_dataset.py
 ├── export.py
 ├── scraper.py
+├── docs/
+│   └── screenshots/
+│       ├── home.png
+│       ├── about.png
+│       ├── detection.png
+│       └── result.png
 └── templates/
     ├── base.html
     ├── home.html
@@ -161,8 +165,7 @@ when it is first needed; it is not saved as a pickle.
 python nlp_pipeline.py
 ```
 
-`adr_model.pkl` and `vectorizer.pkl` are retained legacy files and are not used by
-the current Flask classifier. The dataset includes synthetic examples.
+The dataset includes synthetic examples.
 
 ### 5. Run the application
 
