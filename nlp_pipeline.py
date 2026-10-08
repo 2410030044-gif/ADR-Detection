@@ -1,12 +1,39 @@
-import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
-import joblib
-import random
-import csv
+import json
+from functools import lru_cache
+from pathlib import Path
 import re
+
+import joblib
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
+from sklearn.model_selection import train_test_split
+
+BASE_DIR = Path(__file__).resolve().parent
+DATASET_PATH = BASE_DIR / "adr_dataset_combined.csv"
+CLASSIFIER_PATH = BASE_DIR / "adr_sbert_classifier.pkl"
+METRICS_PATH = BASE_DIR / "model_metrics.json"
+SENTENCE_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+
+
+@lru_cache(maxsize=1)
+def get_sentence_encoder():
+    return SentenceTransformer(SENTENCE_MODEL_NAME, device="cpu")
+
+
+def load_model_metrics():
+    if not METRICS_PATH.exists():
+        return {}
+    with METRICS_PATH.open(encoding="utf-8") as metrics_file:
+        return json.load(metrics_file)
+
 
 # baseline known side effects for each drug
 known_side_effects = {
@@ -131,34 +158,80 @@ def compare_side_effects(drug, reported_reactions):
 
     return expected_found, unexpected_found
 
-# Load dataset
-df = pd.read_csv("adr_dataset_combined.csv")
+def train_model():
+    df = pd.read_csv(DATASET_PATH)
+    required_columns = {"text", "label"}
+    missing_columns = required_columns.difference(df.columns)
+    if missing_columns:
+        raise ValueError(
+            f"Dataset is missing required columns: {', '.join(sorted(missing_columns))}"
+        )
 
-# Features and labels
-X = df["text"]
-y = df["label"]
+    df = df.dropna(subset=["text", "label"])
+    texts = df["text"].astype(str).tolist()
+    labels = df["label"].astype(str).str.strip().str.upper()
+    if not texts or set(labels) != {"ADR", "NON-ADR"}:
+        raise ValueError("Training data must contain both ADR and NON-ADR examples.")
 
-# Convert text to numeric features
-vectorizer = TfidfVectorizer()
-X_vec = vectorizer.fit_transform(X)
+    train_texts, test_texts, y_train, y_test = train_test_split(
+        texts,
+        labels,
+        test_size=0.3,
+        random_state=42,
+        stratify=labels,
+    )
+    encoder = get_sentence_encoder()
+    X_train = encoder.encode(
+        train_texts,
+        batch_size=32,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=True,
+    )
+    X_test = encoder.encode(
+        test_texts,
+        batch_size=32,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=True,
+    )
 
-# Split into train/test
-X_train, X_test, y_train, y_test = train_test_split(X_vec, y, test_size=0.3, random_state=42)
+    classifier = LogisticRegression(
+        max_iter=1000,
+        random_state=42,
+        solver="liblinear",
+    )
+    classifier.fit(X_train, y_train)
+    y_pred = classifier.predict(X_test)
+    metrics = {
+        "accuracy": float(accuracy_score(y_test, y_pred)),
+        "precision": float(
+            precision_score(y_test, y_pred, pos_label="ADR", zero_division=0)
+        ),
+        "recall": float(recall_score(y_test, y_pred, pos_label="ADR", zero_division=0)),
+        "f1": float(f1_score(y_test, y_pred, pos_label="ADR", zero_division=0)),
+    }
+    if hasattr(classifier, "predict_proba") and len(set(y_test)) == 2:
+        adr_index = list(classifier.classes_).index("ADR")
+        metrics["roc_auc"] = float(
+            roc_auc_score(
+                (y_test == "ADR").astype(int),
+                classifier.predict_proba(X_test)[:, adr_index],
+            )
+        )
 
-# Train a simple classifier
-model = LogisticRegression()
-model.fit(X_train, y_train)
+    joblib.dump(classifier, CLASSIFIER_PATH)
+    with METRICS_PATH.open("w", encoding="utf-8") as metrics_file:
+        json.dump(metrics, metrics_file, indent=2)
 
-# Test the model
-y_pred = model.predict(X_test)
-print(classification_report(y_test, y_pred))
+    print(f"Evaluated on {len(y_test)} held-out reviews from {len(texts)} rows.")
+    print("Holdout metrics (ADR is the positive class):")
+    for name, value in metrics.items():
+        print(f"  {name}: {value:.4f}")
+    print(f"Saved classifier to {CLASSIFIER_PATH}")
+    print(f"Saved evaluation metrics to {METRICS_PATH}")
+    return metrics
 
-# Try a custom example
-example = ["This medicine gave me rashes"]
-example_vec = vectorizer.transform(example)
-print("Prediction:", model.predict(example_vec)[0])
 
-# Save model and vectorizer
-joblib.dump(model, "adr_model.pkl")
-joblib.dump(vectorizer, "vectorizer.pkl")
-print("✅ Model and vectorizer saved!")
+if __name__ == "__main__":
+    train_model()

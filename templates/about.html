@@ -21,26 +21,25 @@
       <div class="card shadow-sm">
         <div class="card-body">
           <h5 class="card-title text-success">Methods</h5>
-          <p class="card-text">We compared Bag‑of‑Words and Naive Bayes with advanced transformer‑based models such as Sentence‑BERT.</p>
+          <p class="card-text">The live ADR classifier uses Sentence-BERT embeddings from all-MiniLM-L6-v2 and a scikit-learn Logistic Regression model.</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Performance Metrics -->
-  <h4 class="mt-4">Model Performance</h4>
-  <div class="progress mb-3">
-    <div class="progress-bar bg-success" role="progressbar" style="width: 84%">Baseline ROC-AUC: 0.84</div>
-  </div>
-  <div class="progress mb-3">
-    <div class="progress-bar bg-info" role="progressbar" style="width: 86%">Sentence-BERT ROC-AUC: 0.86</div>
-  </div>
-  <div class="progress mb-3">
-    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%">Precision: 90%</div>
-  </div>
-  <div class="progress mb-3">
-    <div class="progress-bar bg-danger" role="progressbar" style="width: 88%">F1 Score: 88%</div>
-  </div>
+  <h4 class="mt-4">Measured Holdout Metrics (ADR is the positive class)</h4>
+  {% if model_metrics %}
+    {% for name, value in model_metrics.items() %}
+    <div class="progress mb-3">
+      <div class="progress-bar bg-info" role="progressbar" style="width: {{ (value * 100)|round(0) }}%">
+        {% if name == "roc_auc" %}ROC-AUC{% else %}{{ name|title }}{% endif %}: {{ "%.3f"|format(value) }}
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p class="text-muted">Train the model to display measured holdout metrics.</p>
+  {% endif %}
 
   <div class="card mt-4 shadow-sm">
     <div class="card-body">

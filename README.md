@@ -67,22 +67,36 @@ Unexpected Side Effects: None
 - Gunicorn
 
 ### Machine Learning / NLP
+- Sentence-BERT (`sentence-transformers/all-MiniLM-L6-v2`) generates embeddings from patient review text
 - Scikit-learn
 - Joblib
-- NLP-based text classification
-- Text vectorization
-- ADR classification
-- Information extraction
+- Logistic Regression trained on the Sentence-BERT embeddings to predict ADR vs NON-ADR
+- Drug extraction, adverse reaction extraction, temporal cue detection, and severity categorization
+- Comparison of detected reactions with known and unexpected side effects
 
 ### Database
 - MongoDB Atlas
-- PyMongo
+- PyMongo for storing reviews
 
 ### Frontend
 - HTML
 - CSS
 - JavaScript
 - Flask Templates
+
+### Holdout Evaluation Metrics
+
+These are holdout evaluation metrics from this project's dataset, not medical or
+clinical accuracy. The evaluation used 232 reviews, with 70 reviews in the held-out
+test set.
+
+| Metric | Result |
+| --- | ---: |
+| Accuracy | 98.57% |
+| Precision | 100.00% |
+| Recall | 96.77% |
+| F1 Score | 98.36% |
+| ROC-AUC | 100.00% |
 
 ### Deployment
 - Render
@@ -96,6 +110,8 @@ ADR-Detection/
 ├── Procfile
 ├── .python-version
 ├── .gitignore
+├── adr_sbert_classifier.pkl
+├── model_metrics.json
 ├── adr_model.pkl
 ├── vectorizer.pkl
 ├── adr_dataset.csv
@@ -133,9 +149,26 @@ MONGO_URI=your_mongodb_connection_string
 
 The .env file should never be committed to GitHub.
 
-### 4. Run the application
+### 4. Train the Sentence-BERT classifier
 
+The training script uses a stratified 70/30 train/holdout split from
+`adr_dataset_combined.csv`. It saves the Logistic Regression classifier to
+`adr_sbert_classifier.pkl` and the measured holdout metrics to
+`model_metrics.json`. The Sentence-BERT encoder is downloaded from Hugging Face
+when it is first needed; it is not saved as a pickle.
+
+```bash
+python nlp_pipeline.py
+```
+
+`adr_model.pkl` and `vectorizer.pkl` are retained legacy files and are not used by
+the current Flask classifier. The dataset includes synthetic examples.
+
+### 5. Run the application
+
+```bash
 python app.py
+```
 
 Open the application in your browser:
 
@@ -149,7 +182,7 @@ Provides an overview of the ADR Detection system, its purpose, and key research 
 
 ### About
 
-Describes the research goal, methodology, model performance, and potential impact of automated ADR detection.
+Describes the research goal, Sentence-BERT + Logistic Regression methodology, measured holdout metrics, and potential impact of automated ADR detection.
 
 ### Live Detection
 
@@ -162,6 +195,24 @@ Allows users to enter a patient/drug review and receive:
 - Severity
 - Known side effects
 - Unexpected side effects
+
+## Project Screenshots
+
+### 1. Home Page
+
+![Home Page](docs/screenshots/home.png)
+
+### 2. About / Model Performance
+
+![About / Model Performance](docs/screenshots/about.png)
+
+### 3. Live ADR Detection
+
+![Live ADR Detection](docs/screenshots/detection.png)
+
+### 4. Detection Result
+
+![Detection Result](docs/screenshots/result.png)
 
 ## My Contribution
 

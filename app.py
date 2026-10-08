@@ -1,6 +1,12 @@
 from flask import Flask, request, render_template
 import joblib
-from nlp_pipeline import compare_side_effects, known_side_effects
+from nlp_pipeline import (
+    BASE_DIR,
+    compare_side_effects,
+    get_sentence_encoder,
+    known_side_effects,
+    load_model_metrics,
+)
 from pymongo import MongoClient
 import re
 import os
@@ -12,18 +18,17 @@ client = MongoClient(os.getenv("MONGO_URI"))
 db = client["adr_database"]          
 reviews_collection = db["reviews"]   
 
-model = joblib.load("adr_model.pkl")
-vectorizer = joblib.load("vectorizer.pkl")
+model = joblib.load(BASE_DIR / "adr_sbert_classifier.pkl")
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", model_metrics=load_model_metrics())
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return render_template("about.html", model_metrics=load_model_metrics())
 
 @app.route("/detect", methods=["GET", "POST"])
 def detect():
@@ -33,8 +38,13 @@ def detect():
 
     if request.method == "POST":
         text = request.form["review"]
-        vec = vectorizer.transform([text])
-        prediction = model.predict(vec)[0]
+        embedding = get_sentence_encoder().encode(
+            [text],
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        )
+        prediction = model.predict(embedding)[0]
 
         drug, reaction, time, severity = extract_info(text)
 
